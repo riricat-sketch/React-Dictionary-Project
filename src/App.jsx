@@ -1,51 +1,44 @@
 import React, { useState } from "react";
+import axios from "axios";
 import SearchBar from "./components/SearchBar.jsx";
 import Results from "./components/Results.jsx";
-import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSearch = async (value) => {
-    setQuery(value);
-    if (!value) {
+  const handleSearch = async (word) => {
+    if (!word) {
       setResults([]);
+      setError("");
       return;
     }
 
     setLoading(true);
     setError("");
+
     try {
-      const response = await axios.get(
-        `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${value}?key=ctec04f17ee45ebe9b5ffoa34af106fa`
-      );
+      const apiKey = "ctec04f17ee45ebe9b5ffoa34af106fa";
+      const url = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
 
-      // Check for valid results
-      if (!response.data || response.data.length === 0) {
+      const response = await axios.get(url);
+
+      // SheCodes API returns an object with meanings array
+      const wordData = response.data;
+
+      if (!wordData.meanings || wordData.meanings.length === 0) {
+        setError("No definitions found.");
         setResults([]);
-        setError("No results found.");
-      } else {
-        // Filter to get only dictionary entries with shortdef
-        const filteredResults = response.data
-          .filter((entry) => entry.shortdef && entry.shortdef.length > 0)
-          .map((entry) => ({
-            word: entry.meta.id,
-            definition: entry.shortdef.join("; "),
-          }));
-
-        if (filteredResults.length === 0) {
-          setError("No valid definitions found.");
-        }
-
-        setResults(filteredResults);
+        return;
       }
+
+      setResults(wordData.meanings); // THIS is the array your Results component expects
     } catch (err) {
       console.error(err);
-      setError("Error fetching data. Please try again.");
+      setError("Unable to fetch results. Please try again.");
+      setResults([]);
     } finally {
       setLoading(false);
     }
@@ -53,11 +46,14 @@ function App() {
 
   return (
     <main className="app-container">
-      <h1>React Dictionary</h1>
-      <p className="subtitle">Search for a word to see definitions.</p>
+      <h1>Dictionary</h1>
+      <p className="subtitle">Search for a word to see its definition.</p>
+
       <SearchBar onSearch={handleSearch} />
-      {loading ? <p className="loading">Loading...</p> : null}
+
+      {loading && <p className="loading">Loading…</p>}
       {error && <p className="error">{error}</p>}
+
       <Results results={results} />
     </main>
   );
