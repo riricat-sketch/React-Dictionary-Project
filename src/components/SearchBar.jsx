@@ -3,9 +3,7 @@ import React, { useState } from "react";
 function SearchBar({ onSearch }) {
   const [input, setInput] = useState("");
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  const handleChange = (e) => setInput(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +19,13 @@ function SearchBar({ onSearch }) {
     >
       <input
         type="text"
-        placeholder="Search for a word"
         value={input}
-        onChange={handleInputChange}
+        onChange={handleChange}
+        placeholder="Enter a word..."
         aria-label="Search input"
       />
       <button type="submit" aria-label="Search button">
-        Search
+        🔍
       </button>
     </form>
   );

@@ -12,7 +12,8 @@ function Results({ results }) {
       ) : (
         results.map(({ word, definition }) => (
           <div key={word} className="result-item">
-            <strong>{word}</strong>: {definition}
+            <h3>{word}</h3>
+            <p>{definition}</p>
           </div>
         ))
       )}
