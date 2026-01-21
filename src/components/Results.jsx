@@ -1,5 +1,5 @@
 import React from "react";
-import Phonetics from "./Phonetics";
+import Phonetics from "./Phonetics.jsx";
 
 function Results({ results, phonetic, audioUrl }) {
   if (!results || results.length === 0) {

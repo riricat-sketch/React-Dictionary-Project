@@ -32,8 +32,11 @@ function Phonetics({ phonetic, audioUrl }) {
               border: "none",
               cursor: "pointer",
               padding: 0,
+              fontSize: "1.4rem",
+              lineHeight: 1,
             }}
             aria-label="Play pronunciation"
+            title="Play pronunciation"
           >
             🔊
           </button>
