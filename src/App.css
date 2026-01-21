@@ -129,3 +129,36 @@ h1 {
   border-radius: 999px;
   font-size: 0.85rem;
 }
+/* ===== Phonetics ===== */
+.phonetics {
+  margin-bottom: 20px;
+}
+
+.phonetic-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.phonetic-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.audio-player {
+  height: 32px;
+}
+.phonetics {
+  font-size: 1rem;
+}
+
+.phonetic-text {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.phonetics button:hover {
+  color: #1e40af;
+}
