@@ -104,3 +104,28 @@ h1 {
 .error {
   color: #dc2626;
 }
+/* ===== Synonyms ===== */
+.synonyms {
+  margin-top: 12px;
+}
+
+.synonyms-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.synonyms-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.synonym {
+  background: #e0e7ff;
+  color: #1e40af;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}

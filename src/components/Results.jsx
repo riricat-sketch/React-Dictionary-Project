@@ -17,6 +17,20 @@ function Results({ results }) {
               <em>“{item.example}”</em>
             </p>
           )}
+
+          {/* ✅ Synonyms Section */}
+          {item.synonyms && item.synonyms.length > 0 && (
+            <div className="synonyms">
+              <div className="synonyms-title">Synonyms</div>
+              <div className="synonyms-list">
+                {item.synonyms.map((synonym, i) => (
+                  <span key={i} className="synonym">
+                    {synonym}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </section>
