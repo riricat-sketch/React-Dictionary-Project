@@ -25,7 +25,7 @@ function SearchBar({ onSearch }) {
         aria-label="Search input"
       />
       <button type="submit" aria-label="Search button">
-        🔍
+        <span aria-hidden="true">🔍</span>
       </button>
     </form>
   );

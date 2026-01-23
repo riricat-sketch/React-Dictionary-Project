@@ -50,12 +50,12 @@ function App() {
       // --- Pexels API for images ---
       try {
         const pexelsResponse = await axios.get(
-          `https://api.pexels.com/v1/search?query=${word}&per_page=6`,
+          `https://api.pexels.com/v1/search?query=${word}&per_page=12`,
           {
             headers: {
               Authorization: import.meta.env.VITE_PEXELS_API_KEY,
             },
-          }
+          },
         );
         setImages(pexelsResponse.data.photos || []);
       } catch {
